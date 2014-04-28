@@ -1,8 +1,9 @@
 'use strict';
 
-var duplexer = require('duplexer');
 var through2 = require('through2');
 var ForkStream = require('fork-stream');
+var eventStream = require('event-stream');
+var duplexer2 = require('duplexer2');
 
 module.exports = function (condition, trueStream, falseStream) {
 	if (!trueStream) {
@@ -22,20 +23,26 @@ module.exports = function (condition, trueStream, falseStream) {
 
 	// if condition is true, pipe input to trueStream
 	forkStream.a.pipe(trueStream);
-	// then send down-stream
-	trueStream.pipe(outStream);
+
+	var mergedStream;
 
 	if (falseStream) {
 		// if there's an 'else' condition
-		// if condition is false, pipe input to falseStream 
+		// if condition is false
+		// pipe input to falseStream 
 		forkStream.b.pipe(falseStream);
-		// then send down-stream
-		falseStream.pipe(outStream);
+		// merge output with trueStream's output
+		mergedStream = eventStream.merge(falseStream, trueStream);
 	} else {
 		// if there's no 'else' condition
-		// if condition is false, pipe down-stream 
-		forkStream.b.pipe(outStream);
+		// if condition is false
+		// merge output with trueStream's output
+		mergedStream = eventStream.merge(forkStream.b, trueStream);
 	}
 
-	return duplexer(forkStream, outStream);
+	// send everything down-stream
+	mergedStream.pipe(outStream);
+
+	// consumers write in to forkStream, we write out to outStream
+	return duplexer2(forkStream, outStream);
 };
