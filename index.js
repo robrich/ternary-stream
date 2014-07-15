@@ -2,7 +2,7 @@
 
 var through2 = require('through2');
 var ForkStream = require('fork-stream');
-var eventStream = require('event-stream');
+var mergeStream = require('merge-stream');
 var duplexer2 = require('duplexer2');
 
 module.exports = function (condition, trueStream, falseStream) {
@@ -32,12 +32,12 @@ module.exports = function (condition, trueStream, falseStream) {
 		// pipe input to falseStream 
 		forkStream.b.pipe(falseStream);
 		// merge output with trueStream's output
-		mergedStream = eventStream.merge(falseStream, trueStream);
+		mergedStream = mergeStream(falseStream, trueStream);
 	} else {
 		// if there's no 'else' condition
 		// if condition is false
 		// merge output with trueStream's output
-		mergedStream = eventStream.merge(forkStream.b, trueStream);
+		mergedStream = mergeStream(forkStream.b, trueStream);
 	}
 
 	// send everything down-stream
