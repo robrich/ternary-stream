@@ -14,9 +14,9 @@
   ],
   "dependencies": {
     "duplexer2": "^0.0.2",
-    "merge-stream": "^0.1.0",
+    "merge-stream": "^0.1.5",
     "fork-stream": "^0.0.4",
-    "through2": "^0.5.1"
+    "through2": "^0.6.1"
   },
   "devDependencies": {
     "jshint": "^2.5.0",
