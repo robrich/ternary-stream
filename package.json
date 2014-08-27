@@ -1,7 +1,7 @@
 {
   "name": "ternary-stream",
   "description": "Fork stream based on passed condition, and collect down-stream",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "homepage": "https://github.com/robrich/ternary-stream",
   "repository": "git://github.com/robrich/ternary-stream.git",
   "author": "Rob Richardson (http://robrich.org/)",
@@ -13,14 +13,14 @@
     "stream"
   ],
   "dependencies": {
-    "duplexer2": "^0.0.2",
-    "merge-stream": "^0.1.5",
-    "fork-stream": "^0.0.4",
-    "through2": "^0.6.1"
+    "duplexer2": "~0.0.2",
+    "merge-stream": "~0.1.5",
+    "fork-stream": "~0.0.4",
+    "through2": "~0.6.1"
   },
   "devDependencies": {
-    "jshint": "^2.5.0",
-    "mocha": "^1.18.1",
+    "jshint": "^2.5.5",
+    "mocha": "^1.21.4",
     "should": "^4.0.4"
   },
   "scripts": {
