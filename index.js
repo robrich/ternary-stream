@@ -44,5 +44,5 @@ module.exports = function (condition, trueStream, falseStream) {
 	mergedStream.pipe(outStream);
 
 	// consumers write in to forkStream, we write out to outStream
-	return duplexer2(forkStream, outStream);
+	return duplexer2({objectMode: true}, forkStream, outStream);
 };
