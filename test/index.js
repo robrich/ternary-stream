@@ -45,6 +45,60 @@ describe('ternary-stream', function() {
 			s.end();
 		});
 
+		it('should properly redirect trueStream errors', function(done) {
+			// arrange
+			var called = 0;
+
+			var condition = function (data) {
+				return data.answer;
+			};
+
+			var trueStream = through.obj(function (data, enc, cb) {
+				called++;
+				this.emit('error', new Error('foo'));
+				cb();
+			});
+
+			// act
+			var s = ternaryStream(condition, trueStream);
+
+			s.on('error', function (/*data*/) {
+				done();
+			});
+
+			// act
+			s.write({answer:true});
+			s.write({answer:false});
+			s.end();
+		});
+
+		it('should properly redirect falseStream errors', function(done) {
+			// arrange
+			var called = 0;
+
+			var condition = function (data) {
+				return data.answer;
+			};
+
+			var falseStream = through.obj(function (data, enc, cb) {
+				called++;
+				this.emit('error', new Error('foo'));
+				cb();
+			});
+
+			// act
+			var s = ternaryStream(condition, through.obj(), falseStream);
+
+			s.on('error', function (/*data*/) {
+				done();
+			});
+
+			// act
+			s.write({answer:true});
+			s.write({answer:false});
+			s.end();
+		});
+
 		it('should error if no parameters passed', function(done) {
 			// arrange
 			var caughtErr;

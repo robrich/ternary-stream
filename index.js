@@ -12,6 +12,8 @@ module.exports = function (condition, trueStream, falseStream) {
 
 	// output stream
 	var outStream = through2.obj();
+	// redirect trueStream errors to outStream
+	trueStream.on('error', function(err) { outStream.emit('error', err); });
 
 	// create fork-stream
 	var forkStream = new ForkStream({
@@ -29,10 +31,12 @@ module.exports = function (condition, trueStream, falseStream) {
 	if (falseStream) {
 		// if there's an 'else' condition
 		// if condition is false
-		// pipe input to falseStream 
+		// pipe input to falseStream
 		forkStream.b.pipe(falseStream);
 		// merge output with trueStream's output
 		mergedStream = mergeStream(falseStream, trueStream);
+		// redirect falseStream errors to outStream
+		falseStream.on('error', function(err) { outStream.emit('error', err); });
 	} else {
 		// if there's no 'else' condition
 		// if condition is false
