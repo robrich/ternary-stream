@@ -1,7 +1,7 @@
 {
   "name": "ternary-stream",
   "description": "Fork stream based on passed condition, and collect down-stream",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "homepage": "https://github.com/robrich/ternary-stream",
   "repository": "git://github.com/robrich/ternary-stream.git",
   "author": "Rob Richardson (http://robrich.org/)",
@@ -19,9 +19,9 @@
     "through2": "~0.6.3"
   },
   "devDependencies": {
-    "jshint": "^2.5.6",
-    "mocha": "^2.0.0",
-    "should": "^4.1.0"
+    "jshint": "^2.5.10",
+    "mocha": "^2.0.1",
+    "should": "^4.2.1"
   },
   "scripts": {
     "test": "mocha && jshint ./index.js && jshint ./test/."
