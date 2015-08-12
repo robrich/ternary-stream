@@ -13,15 +13,15 @@
     "stream"
   ],
   "dependencies": {
-    "duplexer2": "~0.0.2",
-    "merge-stream": "~0.1.6",
-    "fork-stream": "~0.0.4",
-    "through2": "~0.6.3"
+    "duplexer2": "^0.0.2",
+    "merge-stream": "^1.0.0",
+    "fork-stream": "^0.0.4",
+    "through2": "^2.0.0"
   },
   "devDependencies": {
     "jshint": "^2.5.10",
     "mocha": "^2.0.1",
-    "should": "^4.2.1"
+    "should": "^7.0.0"
   },
   "scripts": {
     "test": "mocha && jshint ./index.js && jshint ./test/."
