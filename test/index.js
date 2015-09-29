@@ -32,7 +32,7 @@ describe('ternary-stream', function() {
 			});
 
 			// assert
-			s.once('end', function(){
+			s.once('finish', function () {
 
 				// Test that command executed
 				called.should.equal(21);
