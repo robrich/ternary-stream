@@ -29,10 +29,5 @@
   "engines": {
     "node": ">= 0.10.0"
   },
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "http://github.com/robrich/ternary-stream/raw/master/LICENSE"
-    }
-  ]
+  "license": "MIT"
 }
