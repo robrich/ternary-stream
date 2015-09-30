@@ -3,7 +3,7 @@
 var through2 = require('through2');
 var ForkStream = require('fork-stream');
 var mergeStream = require('merge-stream');
-var duplexer2 = require('duplexer2');
+var duplexify = require('duplexify');
 
 module.exports = function (condition, trueStream, falseStream) {
 	if (!trueStream) {
@@ -51,5 +51,5 @@ module.exports = function (condition, trueStream, falseStream) {
 	mergedStream.on('error', function(err) { outStream.emit('error', err); });
 
 	// consumers write in to forkStream, we write out to outStream
-	return duplexer2({objectMode: true}, forkStream, outStream);
+	return duplexify.obj(forkStream, outStream);
 };

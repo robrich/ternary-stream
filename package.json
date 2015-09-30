@@ -13,9 +13,9 @@
     "stream"
   ],
   "dependencies": {
-    "duplexer2": "^0.1.0",
-    "merge-stream": "^1.0.0",
+    "duplexify": "^3.4.2",
     "fork-stream": "^0.0.4",
+    "merge-stream": "^1.0.0",
     "through2": "^2.0.0"
   },
   "devDependencies": {
@@ -24,7 +24,7 @@
     "should": "^7.1.0"
   },
   "scripts": {
-    "test": "mocha && jshint ./index.js && jshint ./test/."
+    "test": "mocha && jshint ."
   },
   "engines": {
     "node": ">= 0.10.0"
