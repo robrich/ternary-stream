@@ -1,7 +1,7 @@
 {
   "name": "ternary-stream",
   "description": "Fork stream based on passed condition, and collect down-stream",
-  "version": "2.0.1",
+  "version": "2.1.1",
   "homepage": "https://github.com/robrich/ternary-stream",
   "repository": "git://github.com/robrich/ternary-stream.git",
   "author": "Rob Richardson (http://robrich.org/)",
